@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 25ff1174a6dd2c348a025cb827275df6
+timeCreated: 1520660675
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: g_comickoin_free-Regular
+  fontNames:
+  - g_comickoin_free-Regular
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
