@@ -4,48 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	//オブジェクト参照
+	public GameObject gameObjectPolice;			//ポリス
+
 	//タグ定義
-	private const string TAG_TROUBLE = "";	//タグ：厄介
-	private const string TAG_FAN = "";		//タグ：ノーマルファン
+	private const string TAG_TROUBLE = "Trouble";	//タグ：厄介
+	private const string TAG_FAN = "Fan";		//タグ：ノーマルファン
 
 	//メンバ変数
-	private bool enableAction;				//(厄介・ファン問わず)取り締まれるか
-	private GameObject colObject;			//判定内に入ったオブジェクト(保管用)
 
-
-	/*
-	private void OnTriggerStay(Collider other) {
-		if(hoge){
-			if(other.gameObject.tag == TAG_TROUBLE){
-				//厄介を取り締まる
-			}
-			if(other.gameObject.tag == TAG_FAN){
-				//(罪の無い)ファンを取り締まる
-			}
-		}
-		hoge = false;
-	}
-	*/
-
-	private void OnTriggerEnter2D(Collider2D other) {
-		//対象が判定内に入った
-		colObject = other.gameObject;
-		enableAction = true;
-	}
-
-	private void OnTriggerExit2D(Collider2D other) {
-		//対象が判定から出た
-		enableAction = false;
-	}
 
 
 	public void PunishAction(){
-		if(!enableAction){return;}
+		GameObject tmpObj = gameObjectPolice.GetComponent<PoliceManager>().GetColObject();
 
-		if(colObject.tag == TAG_TROUBLE){
+		if(tmpObj == null){return;}
+
+		if(tmpObj.tag == TAG_TROUBLE){
 			//厄介を取り締まる
+			gameObjectPolice.GetComponent<PoliceManager>().DeleteObject();
 		}
-		if(colObject.tag == TAG_FAN){
+		if(tmpObj.tag == TAG_FAN){
 			//ファンを取り締まる
 		}
 	}
