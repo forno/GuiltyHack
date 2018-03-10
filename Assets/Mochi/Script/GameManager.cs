@@ -9,20 +9,44 @@ public class GameManager : MonoBehaviour {
 	private const string TAG_FAN = "";		//タグ：ノーマルファン
 
 	//メンバ変数
+	private bool enableAction;				//(厄介・ファン問わず)取り締まれるか
+	private GameObject colObject;			//判定内に入ったオブジェクト(保管用)
 
 
-	public void PunishAction(){
-
-	}
-
+	/*
 	private void OnTriggerStay(Collider other) {
-		if(/*hogehoge*/){
+		if(hoge){
 			if(other.gameObject.tag == TAG_TROUBLE){
 				//厄介を取り締まる
 			}
 			if(other.gameObject.tag == TAG_FAN){
 				//(罪の無い)ファンを取り締まる
 			}
+		}
+		hoge = false;
+	}
+	*/
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		//対象が判定内に入った
+		colObject = other.gameObject;
+		enableAction = true;
+	}
+
+	private void OnTriggerExit2D(Collider2D other) {
+		//対象が判定から出た
+		enableAction = false;
+	}
+
+
+	public void PunishAction(){
+		if(!enableAction){return;}
+
+		if(colObject.tag == TAG_TROUBLE){
+			//厄介を取り締まる
+		}
+		if(colObject.tag == TAG_FAN){
+			//ファンを取り締まる
 		}
 	}
 
